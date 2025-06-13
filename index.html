@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarah & Michael's Wedding</title>
+    <title>Linh & Khoi's Wedding</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.23.5/babel.min.js"></script>
@@ -136,57 +136,7 @@
             </svg>
         );
 
-        const WeddingWebsite = () => {
-            // Wedding details - you can customize these
-            const weddingDetails = {
-                brideAndGroom: "Sarah & Michael",
-                date: "June 15, 2024",
-                time: "4:00 PM",
-                location: "The Grand Ballroom",
-                address: "123 Elegant Street, Beautiful City, BC 12345",
-                schedule: [
-                    { time: "3:30 PM", event: "Guest Arrival" },
-                    { time: "4:00 PM", event: "Ceremony Begins" },
-                    { time: "4:30 PM", event: "Ceremony Ends" },
-                    { time: "5:00 PM", event: "Cocktail Hour" },
-                    { time: "6:30 PM", event: "Reception & Dinner" },
-                    { time: "8:00 PM", event: "First Dance" },
-                    { time: "9:00 PM", event: "Dancing & Celebration" }
-                ]
-            };
-
-            // Initial guest list - you can modify this
-            const initialGuests = [
-                { id: 1, name: "John Smith", email: "john@email.com", hasRSVPd: false, attending: null },
-                { id: 2, name: "Emily Johnson", email: "emily@email.com", hasRSVPd: false, attending: null },
-                { id: 3, name: "David Brown", email: "david@email.com", hasRSVPd: false, attending: null },
-                { id: 4, name: "Lisa Wilson", email: "lisa@email.com", hasRSVPd: false, attending: null },
-                { id: 5, name: "James Davis", email: "james@email.com", hasRSVPd: false, attending: null }
-            ];
-
-            const [guests, setGuests] = useState(() => {
-                try {
-                    const saved = localStorage.getItem('weddingGuests');
-                    return saved ? JSON.parse(saved) : initialGuests;
-                } catch (error) {
-                    return initialGuests;
-                }
-            });
-
-            const [currentGuest, setCurrentGuest] = useState('');
-            const [rsvpStatus, setRsvpStatus] = useState('');
-            const [showRSVP, setShowRSVP] = useState(false);
-            const [guestMessage, setGuestMessage] = useState('');
-
-            // Save to localStorage whenever guests change
-            useEffect(() => {
-                try {
-                    localStorage.setItem('weddingGuests', JSON.stringify(guests));
-                } catch (error) {
-                    console.error('Failed to save to localStorage:', error);
-                }
-            }, [guests]);
-
+        const HomeSection = ({ weddingDetails, guests, setGuests, currentGuest, setCurrentGuest, showRSVP, setShowRSVP, guestMessage, setGuestMessage, rsvpStatus, setRsvpStatus }) => {
             const handleGuestLookup = () => {
                 const guest = guests.find(g => 
                     g.name.toLowerCase().includes(currentGuest.toLowerCase()) ||
@@ -234,7 +184,7 @@
             const pendingCount = guests.filter(g => !g.hasRSVPd).length;
 
             return (
-                <div className="wedding-gradient-bg">
+                <div>
                     {/* Hero Section */}
                     <div className="wedding-hero-bg text-white">
                         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '5rem 1rem', textAlign: 'center' }}>
@@ -414,13 +364,219 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            );
+        };
+
+        const OurStorySection = () => (
+            <div style={{ maxWidth: '800px', margin: '0 auto', padding: '4rem 1rem', textAlign: 'center' }}>
+                <h2 style={{ fontSize: '2.25rem', fontFamily: 'serif', fontWeight: 'bold', marginBottom: '2rem', color: '#374151' }}>Our Story</h2>
+                <div className="wedding-card">
+                    <p style={{ color: '#6b7280', marginBottom: '1.5rem' }}>
+                        This story starts some time in early 2023 when both Khoi and Linh somehow managed to swipe right on each other on Hinge.
+                        Three messages and a 3 buck chuck later, Khoi asked Linh a very important question. "What are your life goals?"
+                        Linh responded for some reason.
+                    </p>
+                    <p style={{ color: '#6b7280', marginBottom: '1.5rem' }}>
+                        A few dates later, Khoi and Linh started dating on March 31st, 2023. From there they epxrienced life together. Travelling the world. Going back to schoool.
+                        Getting pushed off the bed. All the big and little things that make a relationship a relationship.
+                    </p>
+                    <p style={{ color: '#6b7280' }}>
+                        And now they will embark on their next journey.
+                    </p>
+                </div>
+            </div>
+        );
+
+        const PicturesSection = () => (
+            <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1rem', textAlign: 'center' }}>
+                <h2 style={{ fontSize: '2.25rem', fontFamily: 'serif', fontWeight: 'bold', marginBottom: '2rem', color: '#374151' }}>Our Pictures</h2>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                    {/* Placeholder Images - replace with actual image paths */}
+                    <div className="wedding-card" style={{ padding: '1rem' }}>
+                        <img src="https://via.placeholder.com/300x200?text=Couple+1" alt="Couple" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.25rem', marginBottom: '0.75rem' }} />
+                        <p style={{ fontSize: '0.9rem', color: '#6b7280' }}>A happy moment</p>
+                    </div>
+                    <div className="wedding-card" style={{ padding: '1rem' }}>
+                        <img src="https://via.placeholder.com/300x200?text=Couple+2" alt="Couple" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.25rem', marginBottom: '0.75rem' }} />
+                        <p style={{ fontSize: '0.9rem', color: '#6b7280' }}>Engagement shoot</p>
+                    </div>
+                    <div className="wedding-card" style={{ padding: '1rem' }}>
+                        <img src="https://via.placeholder.com/300x200?text=Couple+3" alt="Couple" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.25rem', marginBottom: '0.75rem' }} />
+                        <p style={{ fontSize: '0.9rem', color: '#6b7280' }}>Travel adventures</p>
+                    </div>
+                    <div className="wedding-card" style={{ padding: '1rem' }}>
+                        <img src="https://via.placeholder.com/300x200?text=Couple+4" alt="Couple" style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.25rem', marginBottom: '0.75rem' }} />
+                        <p style={{ fontSize: '0.9rem', color: '#6b7280' }}>Candid moments</p>
+                    </div>
+                </div>
+            </div>
+        );
+
+
+        const WeddingWebsite = () => {
+            // Wedding details - you can customize these
+            const weddingDetails = {
+                brideAndGroom: "Linh & Khoi",
+                date: "TBD",
+                time: "TBD",
+                location: "The Grand Ballroom",
+                address: "123 Elegant Street, Beautiful City, BC 12345",
+                schedule: [
+                    { time: "3:30 PM", event: "Guest Arrival" },
+                    { time: "4:00 PM", event: "Ceremony Begins" },
+                    { time: "4:30 PM", event: "Ceremony Ends" },
+                    { time: "5:00 PM", event: "Cocktail Hour" },
+                    { time: "6:30 PM", event: "Reception & Dinner" },
+                    { time: "8:00 PM", event: "First Dance" },
+                    { time: "9:00 PM", event: "Dancing & Celebration" }
+                ]
+            };
+
+            // Initial guest list - you can modify this
+            const initialGuests = [
+                { id: 1, name: "John Smith", email: "john@email.com", hasRSVPd: false, attending: null },
+                { id: 2, name: "Emily Johnson", email: "emily@email.com", hasRSVPd: false, attending: null },
+                { id: 3, name: "David Brown", email: "david@email.com", hasRSVPd: false, attending: null },
+                { id: 4, name: "Lisa Wilson", email: "lisa@email.com", hasRSVPd: false, attending: null },
+                { id: 5, name: "James Davis", email: "james@email.com", hasRSVPd: false, attending: null }
+            ];
+
+            const [guests, setGuests] = useState(() => {
+                try {
+                    const saved = localStorage.getItem('weddingGuests');
+                    return saved ? JSON.parse(saved) : initialGuests;
+                } catch (error) {
+                    return initialGuests;
+                }
+            });
+
+            const [currentGuest, setCurrentGuest] = useState('');
+            const [rsvpStatus, setRsvpStatus] = useState('');
+            const [showRSVP, setShowRSVP] = useState(false);
+            const [guestMessage, setGuestMessage] = useState('');
+            const [currentPage, setCurrentPage] = useState('home'); // New state for page selection
+
+            // Save to localStorage whenever guests change
+            useEffect(() => {
+                try {
+                    localStorage.setItem('weddingGuests', JSON.stringify(guests));
+                } catch (error) {
+                    console.error('Failed to save to localStorage:', error);
+                }
+            }, [guests]);
+
+            const renderPage = () => {
+                switch (currentPage) {
+                    case 'home':
+                        return (
+                            <HomeSection 
+                                weddingDetails={weddingDetails} 
+                                guests={guests} 
+                                setGuests={setGuests}
+                                currentGuest={currentGuest}
+                                setCurrentGuest={setCurrentGuest}
+                                showRSVP={showRSVP}
+                                setShowRSVP={setShowRSVP}
+                                guestMessage={guestMessage}
+                                setGuestMessage={setGuestMessage}
+                                rsvpStatus={rsvpStatus}
+                                setRsvpStatus={setRsvpStatus}
+                            />
+                        );
+                    case 'ourStory':
+                        return <OurStorySection />;
+                    case 'pictures':
+                        return <PicturesSection />;
+                    default:
+                        return (
+                            <HomeSection 
+                                weddingDetails={weddingDetails} 
+                                guests={guests} 
+                                setGuests={setGuests}
+                                currentGuest={currentGuest}
+                                setCurrentGuest={setCurrentGuest}
+                                showRSVP={showRSVP}
+                                setShowRSVP={setShowRSVP}
+                                guestMessage={guestMessage}
+                                setGuestMessage={setGuestMessage}
+                                rsvpStatus={rsvpStatus}
+                                setRsvpStatus={setRsvpStatus}
+                            />
+                        );
+                }
+            };
+
+            return (
+                <div className="wedding-gradient-bg">
+                    {renderPage()}
+
+                    {/* Vertical Page Selection */}
+                    <div style={{ width: '100%', backgroundColor: 'rgba(255,255,255,0.9)', boxShadow: '0 -2px 10px rgba(0,0,0,0.1)', zIndex: '10' }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0.5rem 1rem', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <button
+                                onClick={() => setCurrentPage('home')}
+                                style={{
+                                    flex: '1',
+                                    padding: '0.75rem 0.5rem',
+                                    border: 'none',
+                                    backgroundColor: currentPage === 'home' ? '#fdf2f8' : 'transparent',
+                                    color: currentPage === 'home' ? '#ec4899' : '#6b7280',
+                                    fontWeight: currentPage === 'home' ? 'bold' : 'normal',
+                                    cursor: 'pointer',
+                                    fontSize: '0.9rem',
+                                    borderRadius: '0.25rem',
+                                    transition: 'background-color 0.2s, color 0.2s',
+                                    textAlign: 'center'
+                                }}
+                            >
+                                Home
+                            </button>
+                            <button
+                                onClick={() => setCurrentPage('ourStory')}
+                                style={{
+                                    flex: '1',
+                                    padding: '0.75rem 0.5rem',
+                                    border: 'none',
+                                    backgroundColor: currentPage === 'ourStory' ? '#fdf2f8' : 'transparent',
+                                    color: currentPage === 'ourStory' ? '#ec4899' : '#6b7280',
+                                    fontWeight: currentPage === 'ourStory' ? 'bold' : 'normal',
+                                    cursor: 'pointer',
+                                    fontSize: '0.9rem',
+                                    borderRadius: '0.25rem',
+                                    transition: 'background-color 0.2s, color 0.2s',
+                                    textAlign: 'center'
+                                }}
+                            >
+                                Our Story
+                            </button>
+                            <button
+                                onClick={() => setCurrentPage('pictures')}
+                                style={{
+                                    flex: '1',
+                                    padding: '0.75rem 0.5rem',
+                                    border: 'none',
+                                    backgroundColor: currentPage === 'pictures' ? '#fdf2f8' : 'transparent',
+                                    color: currentPage === 'pictures' ? '#ec4899' : '#6b7280',
+                                    fontWeight: currentPage === 'pictures' ? 'bold' : 'normal',
+                                    cursor: 'pointer',
+                                    fontSize: '0.9rem',
+                                    borderRadius: '0.25rem',
+                                    transition: 'background-color 0.2s, color 0.2s',
+                                    textAlign: 'center'
+                                }}
+                            >
+                                Pictures
+                            </button>
+                        </div>
+                    </div>
 
                     {/* Footer */}
                     <footer style={{ backgroundColor: '#1f2937', color: 'white', padding: '2rem 0' }}>
                         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem', textAlign: 'center' }}>
                             <p style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>We can't wait to celebrate with you!</p>
                             <p style={{ fontSize: '0.875rem', color: '#9ca3af' }}>
-                                For questions, please contact us at wedding@example.com
+                                For questions, please contact us at khoihntran@gamil.com
                             </p>
                         </div>
                     </footer>
